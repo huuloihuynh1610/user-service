@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const isAdmin = require('~middleware/isAdmin')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/',isAdmin, function(req, res, next) {
   res.send('respond with a resource');
 });
 

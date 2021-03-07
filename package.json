@@ -17,7 +17,7 @@
     "lodash": "^4.17.21",
     "module-alias": "^2.2.2",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.19",
+    "mongoose": "^5.11.15",
     "morgan": "~1.9.1",
     "node-schedule": "^2.0.0"
   },
@@ -32,7 +32,6 @@
     "lint-staged": "^10.5.4",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
-    
   },
   "husky": {
     "hooks": {
