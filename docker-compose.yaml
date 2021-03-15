@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./
+    container_name: user-service
+    tty: true
+    environment:
+      NODE_ENV: 'development'
+    volumes: 
+      - ./:/user-service
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+      - mongo
+  mongo:
+    image: mongo:4.2.2
+    container_name: nhatle-mongo
+    ports:
+      - 27017:27017
+    volumes: 
+      - ../data:/data/db
+  redis:
+    image: redis:5.0.7-alpine
+    container_name: nhatle-redis
+    ports:
+      - 6379:6379
+      - 6489:6489
+
