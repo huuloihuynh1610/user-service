@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:12.18-alpine
 
 # Create app directory
 RUN mkdir -p /user-service
