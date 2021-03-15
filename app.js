@@ -9,6 +9,7 @@ import logger from "morgan";
 import mongoose from "mongoose";
 import { MONGO_OPTIONS } from "~root/configSystem.js";
 var usersRouter = require("~routes/user");
+var homeRouter = require("~routes/home");
 
 var app = express();
 
@@ -31,7 +32,7 @@ db.once("open", () => {
   app.use(cookieParser());
 
   app.use("/", usersRouter);
-
+  app.use("/home",homeRouter );
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
     next(createError(404));
