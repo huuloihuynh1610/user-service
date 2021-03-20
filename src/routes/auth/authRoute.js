@@ -8,6 +8,7 @@ import _ from 'lodash';
 import jwt from 'jsonwebtoken'
 import {ERRORS} from '~constants/errors/error';
 import {validation} from '~routes/auth/AuthValidate';
+import isLogin from '~middleware/isLogin'
 /* POST users listing. */
 router.post("/login", validation.loginValidation, async (req, res, next) => {
   try {
@@ -55,6 +56,19 @@ router.post("/register",validation.registerValidation, async (req, res, next) =>
     } else {
       return res.send(new errors(500,ERRORS.EMAIL_IS_ALREADY_EXISTS ))
     }    
+  } catch (error) {
+    var err = new errors.InternalServerError(error?.message);
+    return res.send(err);
+  }
+});
+
+/**
+ * GET auth/profile
+ */
+router.get("/profile",isLogin, async (req, res, next) => {
+  try {
+    const data = await userDao.findOne({_id:req.user._id});
+    return res.json({message:"success",data})
   } catch (error) {
     var err = new errors.InternalServerError(error?.message);
     return res.send(err);

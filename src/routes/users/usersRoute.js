@@ -4,8 +4,9 @@ import errors from "http-errors";
 import userDao from "~dao/userDao";
 import { getPagination } from '~utils/pagination'
 const isAdmin = require("~middleware/isAdmin");
+import isLogin from '~middleware/isLogin';
 import bcrypt from 'bcryptjs'
-import {validation} from '../routes/userValidate';
+import {validation} from './userValidate';
 import { validationResult } from "express-validator";
 
 /* GET users listing. */
@@ -23,9 +24,8 @@ router.get("/",isAdmin, async (req, res, next) => {
 
 /* GET users by id listing. */
 
-router.get("/:id",isAdmin, async (req, res, next) => {
+router.get("/:id",isLogin, async (req, res, next) => {
   try {
-    console.log(req.params.id);
     const data = await userDao.findOne({ _id: req.params.id });
     return res.json({message :'success:',data})
   } catch (error) {
@@ -36,11 +36,9 @@ router.get("/:id",isAdmin, async (req, res, next) => {
 
 /* GET update password by id listing. */
 router.put('/password/:id',
-isAdmin, async (req, res, next) => {
+isLogin, async (req, res, next) => {
     try {
       const _id = req.params.id;
-      console.log(req.body.password);
-      console.log(req.params.id)
       req.body.password = bcrypt.hashSync(req.body.password, 10)
       const result = await userDao.update(_id, { password: req.body.password });
       return res.json({ message :"success", data: result })
@@ -52,7 +50,7 @@ isAdmin, async (req, res, next) => {
 )
 
 /* GET update profile by id listing. */
-router.put('/profile',validation.userValidate, isAdmin, async (req, res, next) => {
+router.put('/profile',validation.userValidate, isLogin, async (req, res, next) => {
   try {
     const error = validationResult(req);
     if (!error.isEmpty()) {

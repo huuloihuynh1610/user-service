@@ -41,7 +41,6 @@ const userDao = {
   },
   async authenticate(email, password) {
     const user = await userModel.findOne({ email: email}).lean();
-    console.log(user);
     if(user){
       let isMatch = await bcrypt.compare(password, user.password)
       if (isMatch == false) return null

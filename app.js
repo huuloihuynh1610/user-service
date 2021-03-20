@@ -9,7 +9,7 @@ import cors from 'cors';
 import logger from "morgan";
 import mongoose from "mongoose";
 import { MONGO_OPTIONS } from "~root/configSystem.js";
-var usersRouter = require("~routes/user");
+var usersRouter = require("~routes/users/usersRoute");
 var authRouter = require("~routes/auth/authRoute");
 
 var app = express();

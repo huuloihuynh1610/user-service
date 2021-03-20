@@ -1,7 +1,7 @@
 import errors from 'http-errors'
 const jwt = require('jsonwebtoken')
 
-const isAdmin = (req, res, next) => {
+const isLogin = (req, res, next) => {
 	if (typeof req.headers.authorization !== 'undefined') {
 		let token = req.headers['authorization']
 		jwt.verify(token, process.env.APP_SECRET, (err, user) => {
@@ -9,11 +9,12 @@ const isAdmin = (req, res, next) => {
 				return res.send(errors.Unauthorized(err.toString()))
 			}
 			req.user = user
-			if (user.role ==2) return next()
-			else return res.send(errors.Unauthorized(err))
+			return next()
+			if (user.role ==1) return next()
+			// else return res.send(errors.Unauthorized(err))
 		})
 	} else {
 		return res.send(errors.Unauthorized())
 	}
 }
-module.exports = isAdmin
+module.exports = isLogin
