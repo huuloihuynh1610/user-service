@@ -6,7 +6,10 @@ export const MONGO_OPTIONS = {
       useUnifiedTopology: true,
       useNewUrlParser: true,
       retryWrites: true,
-      w: 'majority'
+      w: 'majority',
+      writeConcern: {
+        j: true
+    }
     },
     useFindAndModify: true
   }

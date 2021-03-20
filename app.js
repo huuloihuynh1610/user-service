@@ -3,13 +3,14 @@ import "dotenv/config";
 import "module-alias/register";
 import createError from "http-errors";
 import express from "express";
+import cors from 'cors';
+
 // import path from'path';
-import cookieParser from "cookie-parser";
 import logger from "morgan";
 import mongoose from "mongoose";
 import { MONGO_OPTIONS } from "~root/configSystem.js";
 var usersRouter = require("~routes/user");
-var homeRouter = require("~routes/home");
+var authRouter = require("~routes/auth/authRoute");
 
 var app = express();
 
@@ -26,13 +27,12 @@ mongoose.set("useCreateIndex", true);
 const db = mongoose.connection;
 db.once("open", () => {
   console.log(`connected ${MONGO_OPTIONS.uri} succsesfull`);
+  app.use(cors());
   app.use(logger("dev"));
   app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
-
-  app.use("/", usersRouter);
-  app.use("/home",homeRouter );
+  app.use(express.urlencoded({ extended: true }));
+  app.use("/user", usersRouter);
+  app.use("/auth",authRouter );
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
     next(createError(404));
@@ -43,10 +43,10 @@ db.once("open", () => {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
-
-    // render the error page
+    
+    // render the error
     res.status(err.status || 500);
-    res.render("error");
+    res.send(err);
   });
 });
 
