@@ -10,7 +10,7 @@ const isLogin = (req, res, next) => {
 			}
 			req.user = user
 			return next()
-			if (user.role ==1) return next()
+			// if (user.role ==1) return next()
 			// else return res.send(errors.Unauthorized(err))
 		})
 	} else {
