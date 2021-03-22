@@ -7,9 +7,6 @@ export const MONGO_OPTIONS = {
       useNewUrlParser: true,
       retryWrites: true,
       w: 'majority',
-      writeConcern: {
-        j: true
-    }
     },
     useFindAndModify: true
   }

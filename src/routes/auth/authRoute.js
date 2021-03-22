@@ -25,7 +25,8 @@ router.post("/login", validation.loginValidation, async (req, res, next) => {
     }
     const token = jwt.sign(
       { _id: user._id, role: user.role },
-      process.env.APP_SECRET
+      process.env.APP_SECRET,
+      { expiresIn: '10day' }
     );
     return res.json({ access_token: token, role: user.role, message:"success"});
   } catch (error) {

@@ -34,7 +34,7 @@ router.get("/:id",isLogin, async (req, res, next) => {
   }
 });
 
-/* GET update password by id listing. */
+/* PUT update password by id listing. */
 router.put('/password/:id',
 isLogin, async (req, res, next) => {
     try {
@@ -49,7 +49,7 @@ isLogin, async (req, res, next) => {
   }
 )
 
-/* GET update profile by id listing. */
+/* PUT update profile by id listing. */
 router.put('/profile',validation.userValidate, isLogin, async (req, res, next) => {
   try {
     const error = validationResult(req);
@@ -79,6 +79,7 @@ router.delete('/:id',isAdmin, async (req, res, next) => {
     }
   }
 )
+
 
 
 module.exports = router;
