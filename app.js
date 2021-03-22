@@ -15,6 +15,7 @@ var authRouter = require("~routes/auth/authRoute");
 var packRouter = require('~routes/pack/packRoute');
 var paymentRoute = require('~routes/payment/paymentRoute');
 var apiTokenRoute = require('~routes/apiToken/apiTokenRoute');
+var apiTokenDetailRoute = require('~routes/apiTokenDetail/apiTokenDetailRoute')
 var app = express();
 
 mongoose
@@ -39,6 +40,7 @@ db.once("open", () => {
   app.use('/pack',packRouter);
   app.use('/payment',paymentRoute);
   app.use('/apiToken',apiTokenRoute)
+  app.use('/apiTokenDetail',apiTokenDetailRoute)
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
     next(createError(404));
