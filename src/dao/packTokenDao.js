@@ -1,15 +1,15 @@
-import apiTokenModel from "~models/apiTokenModel";
+import packTokenModel from "~models/packTokenModel";
 
-const apiTokenDao = {
+const packTokenDao = {
   async getTotalCount(query = {}) {
-    return apiTokenModel.find(query).estimatedDocumentCount();
+    return packTokenModel.find(query).estimatedDocumentCount();
   },
   async findAll({ minIndex, itemPerPage }) {
-    return apiTokenModel
+    return packTokenModel
       .find({})
       .populate({
         path: "userId",
-        select: ["_id", "email", "firstName", "lastName", ""],
+        select: ["_id", "email", "firstName", "lastName", "address"],
       })
       .sort({ createdAt: -1 })
       .skip(minIndex)
@@ -17,21 +17,21 @@ const apiTokenDao = {
   },
 
   async create(data) {
-    const result = await apiTokenModel.create(data);
+    const result = await packTokenModel.create(data);
     return result;
   },
   async findOne(query) {
-    const result = await apiTokenModel
+    const result = await packTokenModel
       .findOne(query)
       .populate({
         path: "userId",
-        select: ["_id", "email", "firstName", "lastName", ""],
+        select: ["_id", "email", "firstName", "lastName", "address"],
       });
     return result;
   },
 
   async update(_id, data) {
-    const item = await apiTokenModel.findOneAndUpdate(
+    const item = await packTokenModel.findOneAndUpdate(
       { _id },
       {
         $set: {
@@ -43,8 +43,8 @@ const apiTokenDao = {
     return item;
   },
   async delete(_id) {
-    const item = await apiTokenModel.findOneAndRemove({ _id });
+    const item = await packTokenModel.findOneAndRemove({ _id });
     return item;
   },
 };
-export default apiTokenDao;
+export default packTokenDao;

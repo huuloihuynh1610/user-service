@@ -1,6 +1,6 @@
 import { body, validationResult } from "express-validator";
 export const validation = {
-  apiTokenValidate: [
+  packTokenValidate: [
     body("userId").notEmpty().withMessage("userId is required"),
   ],
 };

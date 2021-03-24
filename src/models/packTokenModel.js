@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
-const apiTokenSchema = new mongoose.Schema(
+const packTokensSchema = new mongoose.Schema(
   {
     token: {
       type: String,
       trim: true
     },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+    packId: { type: mongoose.Schema.Types.ObjectId, ref: 'Packs' },
     status : {
         type: Boolean,
         default: true
@@ -22,5 +23,5 @@ const apiTokenSchema = new mongoose.Schema(
   { timestamps: {} }
 )
 
-const apiToken = mongoose.model('apiTokens', apiTokenSchema)
-export default apiToken
+const packTokens = mongoose.model('packTokens', packTokensSchema)
+export default packTokens
