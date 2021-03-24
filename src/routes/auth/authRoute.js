@@ -14,7 +14,7 @@ router.post("/login", validation.loginValidation, async (req, res, next) => {
   try {
     const error = validationResult(req);
     if (!error.isEmpty()) {
-      return res.status(400).json({ errors: error.array() });
+      return res.status(400).json({ errors: error.array()});
     }
     const user = await userDao.authenticate(
       req.body.email,

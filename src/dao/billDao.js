@@ -1,15 +1,17 @@
-import apiTokenDetailModel from "~models/apiTokenDetailModel";
+import billModel from "~models/billModel";
 
-const apiTokenDetailDao = {
+const billDao = {
   async getTotalCount(query = {}) {
-    return apiTokenDetailModel.find(query).estimatedDocumentCount();
+    return billModel.find(query).estimatedDocumentCount();
   },
   async findAll({ minIndex, itemPerPage }) {
-    return apiTokenDetailModel
+    return billModel
       .find({})
       .populate({
         path: "userId",
-        select: ["_id", "email", "firstName", "lastName", ""],
+      })
+      .populate({
+        path: "paymentId",
       })
       .sort({ createdAt: -1 })
       .skip(minIndex)
@@ -17,21 +19,23 @@ const apiTokenDetailDao = {
   },
 
   async create(data) {
-    const result = await apiTokenDetailModel.create(data);
+    const result = await billModel.create(data);
     return result;
   },
   async findOne(query) {
-    const result = await apiTokenDetailModel
+    const result = await billModel
       .findOne(query)
       .populate({
         path: "userId",
-        select: ["_id", "email", "firstName", "lastName", ""],
-      });
+      })
+      .populate({
+        path: "paymentId",
+      })
     return result;
   },
 
   async update(_id, data) {
-    const item = await apiTokenDetailModel.findOneAndUpdate(
+    const item = await billModel.findOneAndUpdate(
       { _id },
       {
         $set: {
@@ -43,8 +47,8 @@ const apiTokenDetailDao = {
     return item;
   },
   async delete(_id) {
-    const item = await apiTokenDetailModel.findOneAndRemove({ _id });
+    const item = await billModel.findOneAndRemove({ _id });
     return item;
   },
 };
-export default apiTokenDetailDao;
+export default billDao;

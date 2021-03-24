@@ -56,7 +56,7 @@
     "~constants": "./src/constants",
     "~services": "./src/services",
     "~utils": "./src/utils",
-    "~dao": "./src/dao",
+    "~dao": "./src/dao", 
     "~middleware": "./src/middleware"
   }
 }
