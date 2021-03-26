@@ -1,9 +1,9 @@
 /**
 * @swagger
-* /user:
+* /pack:
 *   get:
 *     tags:
-*       - Users
+*       - Pack
 *     summary: Get user from database
 *     responses:
 *       401:
@@ -32,10 +32,10 @@
 */
 /**
 * @swagger
-* /user/{id}:
+* /pack/{id}:
 *   get:
 *     tags:
-*       - Users
+*       - Pack
 *     summary: Get user from database
 *     parameters:
 *       - name: id
@@ -66,27 +66,31 @@
 *           type: string
 *           example: "Internal server error"
 */
- /**
+
+/**
  * @swagger
- * /user/profile:
- *   put:
+ * /pack:
+ *   post:
  *     tags:
- *       - Users
+ *       - Pack
  *     parameters:
  *       - name: body
  *         in: body
  *         required: true
  *         properties:
- *           firstName:
+ *           name:
  *             type: string
- *           lastName:
+ *           price:
+ *             type: number
+ *           amount:
  *             type: string
- *           address:
+ *           type:
  *             type: string
  *         example: {
- *           "firstName": "Nguyen",
- *           "lastName": "Truong Huu",
- *           "address" :"HCM"
+ *           "name": "chuyen khoan",
+ *           "type": "1",
+ *           "price":110000,
+ *           "amount":"100000"
  *         }
  *     responses:
  *       200:
@@ -97,41 +101,7 @@
  *         schema:
  *           type: object
  *           properties:
- *             $ref: '#/definitions/User'
- *       500:
- *         description: When got server exception
- *         schema:
- *           type: string
- */
- /**
- * @swagger
- * /user/password/{id}:
- *   put:
- *     tags:
- *       - Users
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *       - name: body
- *         in: body
- *         required: true
- *         properties:
- *           password:
- *             type: string
- *         example: {
- *           "password": "111111"
- *         }
- *     responses:
- *       200:
- *         name: body
- *         in: body
- *         required: true
- *         description: Your account info
- *         schema:
- *           type: object
- *           properties:
- *             $ref: '#/definitions/User'
+ *             $ref: '#/definitions/Pack'
  *       500:
  *         description: When got server exception
  *         schema:
@@ -140,7 +110,50 @@
 
  /**
  * @swagger
- * /user/{id}:
+ * /pack/{id}:
+ *   put:
+ *     tags:
+ *       - Pack
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *       - name: body
+ *         in: body
+ *         required: true
+ *         properties:
+ *           name:
+ *             type: string
+ *           price:
+ *             type: number
+ *           amount:
+ *             type: string
+ *           type:
+ *             type: string
+ *         example: {
+ *           "name": "chuyen khoan",
+ *           "type": "1",
+ *           "price":110000,
+ *           "amount":"100000"
+ *         }
+ *     responses:
+ *       200:
+ *         name: body
+ *         in: body
+ *         required: true
+ *         description: Your account info
+ *         schema:
+ *           type: object
+ *           properties:
+ *             $ref: '#/definitions/Pack'
+ *       500:
+ *         description: When got server exception
+ *         schema:
+ *           type: string
+ */
+/**
+ * @swagger
+ * /pack/{id}:
  *   delete:
  *     tags:
  *       - Pack
@@ -157,7 +170,7 @@
  *         schema:
  *           type: object
  *           properties:
- *             $ref: '#/definitions/User'
+ *             $ref: '#/definitions/Pack'
  *       500:
  *         description: When got server exception
  *         schema:
