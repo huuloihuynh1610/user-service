@@ -23,8 +23,8 @@
     "mongoose": "^5.11.15",
     "morgan": "~1.9.1",
     "node-schedule": "^2.0.0",
-    "swagger-jsdoc": "^7.0.0-rc.6",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-jsdoc": "^3.3.0",
+    "swagger-ui-express": "^4.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.0",
