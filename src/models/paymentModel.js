@@ -16,3 +16,17 @@ const paymentSchema = new mongoose.Schema(
 );
 const payment = mongoose.model("payment", paymentSchema);
 export default payment;
+
+/**
+ * @swagger
+ * definitions:
+ *  Payment:
+ *    type: object
+ *    properties:
+ *      name:
+ *        type: string
+ *      type:
+ *        type: string
+ * 
+ */
+

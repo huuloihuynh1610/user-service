@@ -9,6 +9,8 @@ import cors from 'cors';
 import logger from "morgan";
 import mongoose from "mongoose";
 import { MONGO_OPTIONS } from "~root/configSystem.js";
+import swaggerUI from 'swagger-ui-express';
+import swaggerSpecV1 from '~root/doc';
 
 var usersRouter = require("~routes/users/usersRoute");
 var authRouter = require("~routes/auth/authRoute");
@@ -53,6 +55,7 @@ db.once("open", () => {
   app.use('/packApi',packApiRoute);
   app.use('/bill',billRoute);
   app.use('/billDetail',billDetailRoute);
+  app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecV1));
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
     next(createError(404));

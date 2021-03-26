@@ -26,10 +26,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: 1,
     },
-    role: {
-      type: String,
-      default: 1,
-    },
     address: {
       type: String,
       required: true,
@@ -40,3 +36,21 @@ const userSchema = new mongoose.Schema(
 );
 const user = mongoose.model("users", userSchema);
 export default user;
+/**
+ * @swagger
+ * definitions:
+ *  User:
+ *    type: object
+ *    properties:
+ *      firstName:
+ *        type: string
+ *      lastName:
+ *        type: string
+ *      address:
+ *        type: string
+ *      password:
+ *        type: string
+ *      role:
+ *        type: string
+ * 
+ */
