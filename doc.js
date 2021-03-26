@@ -5,7 +5,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'VisionX API Docs',
   },
-  host: 'localhost:3000/',
+  host: 'http://138.91.34.70:3000',
   // produces: ['application/json'],
   // consumes: ['application/json'],
   securityDefinitions: {
