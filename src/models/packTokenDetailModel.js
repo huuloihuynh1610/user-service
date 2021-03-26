@@ -8,4 +8,16 @@ const packTokenDetailSchema = new mongoose.Schema(
 )
 
 const packTokenDetails = mongoose.model('packTokenDetails', packTokenDetailSchema)
-export default packTokenDetails
+export default packTokenDetails;
+/**
+ * @swagger
+ * definitions:
+ *  PackTokenDetails:
+ *    type: object
+ *    properties:
+ *      packTokenId:
+ *        type: string
+ *      packApiId:
+ *        type: string
+ * 
+ */

@@ -1,9 +1,9 @@
 /**
 * @swagger
-* /user:
+* /api:
 *   get:
 *     tags:
-*       - Users
+*       - API
 *     summary: Get user from database
 *     responses:
 *       401:
@@ -32,10 +32,10 @@
 */
 /**
 * @swagger
-* /user/{id}:
+* /api/{id}:
 *   get:
 *     tags:
-*       - Users
+*       - API
 *     summary: Get user from database
 *     parameters:
 *       - name: id
@@ -66,27 +66,29 @@
 *           type: string
 *           example: "Internal server error"
 */
- /**
+
+
+/**
  * @swagger
- * /user/profile:
- *   put:
+ * /api:
+ *   post:
  *     tags:
- *       - Users
+ *       - API
  *     parameters:
  *       - name: body
  *         in: body
  *         required: true
  *         properties:
- *           firstName:
+ *           name:
  *             type: string
- *           lastName:
- *             type: string
- *           address:
+ *           params:
+ *             type: object
+ *           link:
  *             type: string
  *         example: {
- *           "firstName": "Nguyen",
- *           "lastName": "Truong Huu",
- *           "address" :"HCM"
+ *           "name": "nhan dien khuon mat",
+ *           "params": {},
+ *           "link":"https://fb.com",
  *         }
  *     responses:
  *       200:
@@ -97,41 +99,7 @@
  *         schema:
  *           type: object
  *           properties:
- *             $ref: '#/definitions/User'
- *       500:
- *         description: When got server exception
- *         schema:
- *           type: string
- */
- /**
- * @swagger
- * /user/password/{id}:
- *   put:
- *     tags:
- *       - Users
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *       - name: body
- *         in: body
- *         required: true
- *         properties:
- *           password:
- *             type: string
- *         example: {
- *           "password": "111111"
- *         }
- *     responses:
- *       200:
- *         name: body
- *         in: body
- *         required: true
- *         description: Your account info
- *         schema:
- *           type: object
- *           properties:
- *             $ref: '#/definitions/User'
+ *             $ref: '#/definitions/API'
  *       500:
  *         description: When got server exception
  *         schema:
@@ -140,10 +108,50 @@
 
  /**
  * @swagger
- * /user/{id}:
+ * /api/{id}:
+ *   put:
+ *     tags:
+ *       - API
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *       - name: body
+ *         in: body
+ *         required: true
+ *         properties:
+ *           name:
+ *             type: string
+ *           params:
+ *             type: object
+ *           link:
+ *             type: string
+ *         example: {
+ *           "name": "nhan dien khuon mat",
+ *           "params": {},
+ *           "link":"https://fb.com",
+ *         }
+ *     responses:
+ *       200:
+ *         name: body
+ *         in: body
+ *         required: true
+ *         description: Your account info
+ *         schema:
+ *           type: object
+ *           properties:
+ *             $ref: '#/definitions/API'
+ *       500:
+ *         description: When got server exception
+ *         schema:
+ *           type: string
+ */
+/**
+ * @swagger
+ * /api/{id}:
  *   delete:
  *     tags:
- *       - Pack
+ *       - API
  *     parameters:
  *       - name: id
  *         in: path
@@ -157,7 +165,7 @@
  *         schema:
  *           type: object
  *           properties:
- *             $ref: '#/definitions/User'
+ *             $ref: '#/definitions/API'
  *       500:
  *         description: When got server exception
  *         schema:

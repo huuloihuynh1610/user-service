@@ -30,6 +30,42 @@
 *           type: string
 *           example: "Internal server error"
 */
+/**
+* @swagger
+* /payment/{id}:
+*   get:
+*     tags:
+*       - Payment
+*     summary: Get user from database
+*     parameters:
+*       - name: id
+*         in: path
+*         required: true
+*     responses:
+*       401:
+*         description: When got server exception
+*         schema:
+*           type: string
+*           example: "Unauthorized"
+*       200:
+*         description: get order info
+*         schema:
+*           type: object
+*           properties:
+*             message:
+*               type: string
+*             data:
+*               type: string
+*           example: {
+*             'message': "success",
+*             'data': []
+*           }
+*       500:
+*         description: When got server exception
+*         schema:
+*           type: string
+*           example: "Internal server error"
+*/
 
 
 /**
@@ -89,6 +125,31 @@
  *           "name": "chuyen khoan",
  *           "type": "1"
  *         }
+ *     responses:
+ *       200:
+ *         name: body
+ *         in: body
+ *         required: true
+ *         description: Your account info
+ *         schema:
+ *           type: object
+ *           properties:
+ *             $ref: '#/definitions/Payment'
+ *       500:
+ *         description: When got server exception
+ *         schema:
+ *           type: string
+ */
+/**
+ * @swagger
+ * /payment/{id}:
+ *   delete:
+ *     tags:
+ *       - Payment
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
  *     responses:
  *       200:
  *         name: body

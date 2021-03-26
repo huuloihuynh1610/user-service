@@ -21,3 +21,16 @@ const apiSchema = new mongoose.Schema(
 
 const api = mongoose.model('api', apiSchema)
 export default api
+/**
+ * @swagger
+ * definitions:
+ *  API:
+ *    type: object
+ *    properties:
+ *      name:
+ *        type: string
+ *      params:
+ *        type: object
+ *      link:
+ *        type: string
+ */

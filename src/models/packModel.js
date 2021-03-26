@@ -30,3 +30,20 @@ const PacksSchema = new mongoose.Schema(
 );
 const Pack = mongoose.model("Packs", PacksSchema);
 export default Pack;
+/**
+ * @swagger
+ * definitions:
+ *  Pack:
+ *    type: object
+ *    properties:
+ *      name:
+ *        type: string
+ *      price:
+ *        type: number
+ *      type:
+ *        type: string
+ *      amount:
+ *        type:number
+ *      expriedDate:
+ *        type : Date
+ */

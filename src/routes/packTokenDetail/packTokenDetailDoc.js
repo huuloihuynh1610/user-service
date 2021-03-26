@@ -1,9 +1,9 @@
 /**
 * @swagger
-* /user:
+* /packTokenDetail:
 *   get:
 *     tags:
-*       - Users
+*       - PackTokenDetail
 *     summary: Get user from database
 *     responses:
 *       401:
@@ -30,63 +30,26 @@
 *           type: string
 *           example: "Internal server error"
 */
+
+
 /**
-* @swagger
-* /user/{id}:
-*   get:
-*     tags:
-*       - Users
-*     summary: Get user from database
-*     parameters:
-*       - name: id
-*         in: path
-*         required: true
-*     responses:
-*       401:
-*         description: When got server exception
-*         schema:
-*           type: string
-*           example: "Unauthorized"
-*       200:
-*         description: get order info
-*         schema:
-*           type: object
-*           properties:
-*             message:
-*               type: string
-*             data:
-*               type: string
-*           example: {
-*             'message': "success",
-*             'data': []
-*           }
-*       500:
-*         description: When got server exception
-*         schema:
-*           type: string
-*           example: "Internal server error"
-*/
- /**
  * @swagger
- * /user/profile:
- *   put:
+ * /packTokenDetail:
+ *   post:
  *     tags:
- *       - Users
+ *       - PackTokenDetail
  *     parameters:
  *       - name: body
  *         in: body
  *         required: true
  *         properties:
- *           firstName:
+ *           packTokenId:
  *             type: string
- *           lastName:
- *             type: string
- *           address:
+ *           packApiId:
  *             type: string
  *         example: {
- *           "firstName": "Nguyen",
- *           "lastName": "Truong Huu",
- *           "address" :"HCM"
+ *           "packApiId": "string",
+ *           "packTokenId": "string"
  *         }
  *     responses:
  *       200:
@@ -97,41 +60,7 @@
  *         schema:
  *           type: object
  *           properties:
- *             $ref: '#/definitions/User'
- *       500:
- *         description: When got server exception
- *         schema:
- *           type: string
- */
- /**
- * @swagger
- * /user/password/{id}:
- *   put:
- *     tags:
- *       - Users
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *       - name: body
- *         in: body
- *         required: true
- *         properties:
- *           password:
- *             type: string
- *         example: {
- *           "password": "111111"
- *         }
- *     responses:
- *       200:
- *         name: body
- *         in: body
- *         required: true
- *         description: Your account info
- *         schema:
- *           type: object
- *           properties:
- *             $ref: '#/definitions/User'
+ *             $ref: '#/definitions/PackTokenDetails'
  *       500:
  *         description: When got server exception
  *         schema:
@@ -140,10 +69,47 @@
 
  /**
  * @swagger
- * /user/{id}:
+ * /packTokenDetail/{id}:
+ *   put:
+ *     tags:
+ *       - PackTokenDetail
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *       - name: body
+ *         in: body
+ *         required: true
+ *         properties:
+ *           packTokenId:
+ *             type: string
+ *           packApiId:
+ *             type: string
+ *         example: {
+ *           "packApiId": "string",
+ *           "packTokenId": "string"
+ *         }
+ *     responses:
+ *       200:
+ *         name: body
+ *         in: body
+ *         required: true
+ *         description: Your account info
+ *         schema:
+ *           type: object
+ *           properties:
+ *             $ref: '#/definitions/PackTokenDetails'
+ *       500:
+ *         description: When got server exception
+ *         schema:
+ *           type: string
+ */
+/**
+ * @swagger
+ * /packTokenDetail/{id}:
  *   delete:
  *     tags:
- *       - Pack
+ *       - PackTokenDetail
  *     parameters:
  *       - name: id
  *         in: path
@@ -157,7 +123,7 @@
  *         schema:
  *           type: object
  *           properties:
- *             $ref: '#/definitions/User'
+ *             $ref: '#/definitions/PackTokenDetails'
  *       500:
  *         description: When got server exception
  *         schema:
