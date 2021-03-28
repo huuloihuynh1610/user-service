@@ -1,5 +1,5 @@
 export function getPagination(
-  { query: { itemPerPage = 5, page = 1 } },
+  { query: { itemPerPage = 50, page = 1 } },
   totalItem
 ) {
   page = parseInt(page);
