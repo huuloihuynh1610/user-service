@@ -4,7 +4,7 @@ pipeline {
         stage('Clone') {
             steps{
                 script {
-                    git branch: 'main', credentialsId: 'git-hub', url: 'https://github.com/khoa-luan/user-service.git'
+                    git branch: 'master', credentialsId: 'git-hub', url: 'https://github.com/khoa-luan/user-service.git'
                 }
             }
         }
