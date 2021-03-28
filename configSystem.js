@@ -1,5 +1,5 @@
 export const MONGO_OPTIONS = {
-    uri: process.env.MONGO_URI,
+    uri: 'mongodb://mongo:27017/database',
     user: process.env.MONGO_USER,
     pass: process.env.MONGO_PASS,
     db_options: {
