@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                      sshagent (credentials: ['ssh-jenkins']) {
-                        sh "ssh -T -v -o StrictHostKeyChecking=no azureuser@10.104.0.2"
+                        sh "ssh -T -v -o StrictHostKeyChecking=no azureuser@10.0.0.4"
                         sh "docker-compose stop"
                         sh "docker-compose rm -f"
                         sh "docker-compose up -d --build"
