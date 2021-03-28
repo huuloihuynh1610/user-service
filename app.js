@@ -23,7 +23,8 @@ var apiDocumenntRoute = require('~routes/documents/apiDocumentsRoute');
 var masterDataRoute = require('~routes/masterData/masterDataRoute');
 var packApiRoute= require('~routes/packApi/packApiRoute');
 var billRoute = require('~routes/bill/billRoute');
-var billDetailRoute = require('~routes/bill/billDetailRoute')
+var billDetailRoute = require('~routes/bill/billDetailRoute');
+var homeRoute = require('~routes/home/homeRoute')
 var app = express();
 
 mongoose
@@ -43,6 +44,9 @@ db.once("open", () => {
   app.use(logger("dev"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(require('body-parser').json()); 
+  app.use(require('body-parser').urlencoded({ extended: true }));
+
   app.use("/user", usersRouter);
   app.use("/auth",authRouter );
   app.use('/pack',packRouter);
@@ -55,6 +59,7 @@ db.once("open", () => {
   app.use('/packApi',packApiRoute);
   app.use('/bill',billRoute);
   app.use('/billDetail',billDetailRoute);
+  app.use('/home',homeRoute)
   app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecV1));
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {

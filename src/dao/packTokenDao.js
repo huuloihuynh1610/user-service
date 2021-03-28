@@ -46,5 +46,12 @@ const packTokenDao = {
     const item = await packTokenModel.findOneAndRemove({ _id });
     return item;
   },
+  async findPack(userId) {
+    const item = await packTokenModel.find({ userId : userId, status :false })
+    .populate({
+      path: "packId",
+    })
+    return item
+  },
 };
 export default packTokenDao;
